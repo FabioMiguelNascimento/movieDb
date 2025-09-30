@@ -1,4 +1,4 @@
-import { GenresInput, PopularInput, SimilarInput, TopRatedSchemaInput } from '@repo/core/schemas/tmdb.schema';
+import { DiscoverInput, GenresInput, PopularInput, SimilarInput, TopRatedSchemaInput } from '@repo/core/schemas/tmdb.schema';
 import { tmdb } from '../utils/tmdb.axios';
 
 export default class TheMovieDBService {
@@ -52,5 +52,10 @@ export default class TheMovieDBService {
         async getSimilar(data: SimilarInput) {
             const { type, similarId, ...query} = data
             return this.callAPI(`/${data.type}/${data.similarId}/similar`, 'GET', undefined, query)
+        }
+
+        async discover(data: DiscoverInput){
+            const { type, ...query } = data
+            return this.callAPI(`/discover/${data.type}`, 'GET', undefined, query)
         }
 }

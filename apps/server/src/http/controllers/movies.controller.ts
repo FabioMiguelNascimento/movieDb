@@ -1,4 +1,4 @@
-import { GenresInput, PopularInput, SimilarInput, TopRatedSchemaInput } from "@repo/core/schemas/tmdb.schema";
+import { DiscoverInput, GenresInput, PopularInput, SimilarInput, TopRatedSchemaInput } from "@repo/core/schemas/tmdb.schema";
 import { NextFunction, Request, Response } from "express";
 import TheMovieDBService from "../../services/tmdb.service";
 import makeGetGenres from "../../use-cases/movies/getGenres";
@@ -54,7 +54,7 @@ export default class MoviesController {
             const data: GenresInput = req.validatedData
 
             const result = await this.getGenresUseCase(data)
-            
+
             return success(res, result, "Genres retrieved successfully")
         } catch (err) {
             next(err)
@@ -68,6 +68,18 @@ export default class MoviesController {
 
             const result = await this.moviesService.getSimilar(data)
             return success(res, result, "Similar movies/tv shows retrived sucessfully")
+        } catch (err) {
+            next(err)
+        }
+
+    }
+
+    search = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const data: DiscoverInput = req.validatedData
+
+            const result = await this.moviesService.discover(data)
+            return success(res, result, "Filtred movies listed succesufuly")
         } catch (err) {
             next(err)
         }

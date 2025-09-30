@@ -29,14 +29,15 @@ export type getTrandingInput = z.infer<typeof getTrandingSchema>
 
 
 export const discoverSchema = z.object({
+    type: typeEnum,
     certification: z.string().optional(),
     'certification.gte': z.string().optional(),
     'certification.lte': z.string().optional(),
     certification_country: z.string().optional(),
     include_adult: z.coerce.boolean().optional().default(false),
     include_video: z.coerce.boolean().optional().default(false),
-    language: z.string().optional().default('en-US'),
-    page: z.coerce.number().int().min(1).optional().default(1),
+    language: languageEnum,
+    page: page,
     primary_release_year: z.coerce.number().int().optional(),
     'primary_release_date.gte': z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
     'primary_release_date.lte': z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
