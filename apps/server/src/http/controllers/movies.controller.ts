@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import TheMovieDBService from "../../services/tmdb.service";
 import makeGetGenres from "../../use-cases/movies/getGenres";
 import { success } from "../../utils/api-response.helper";
-import MoviesRepository from "../repo/movie.repo";
+import MoviesRepository from "../repo/movies.repo";
 
 export default class MoviesController {
     private moviesRepo: MoviesRepository;

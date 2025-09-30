@@ -1,4 +1,4 @@
-import { MovieInterface } from "../../http/repo/movie.repo";
+import { MovieInterface } from "../../http/repo/movies.repo";
 import TheMovieDBService from "../../services/tmdb.service";
 
 export default function makeGetGenres(repo: MovieInterface, service: TheMovieDBService) {
