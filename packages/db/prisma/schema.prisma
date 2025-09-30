@@ -14,9 +14,10 @@ enum Type {
 
 
 model Genre {
-  id   Int    @id
-  name String
-  type Type
+  id       Int
+  name     String
+  type     Type
+  language String
   
-  @@unique([id, type])
+  @@id([id, type, language])
 }

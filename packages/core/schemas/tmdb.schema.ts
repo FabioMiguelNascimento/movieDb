@@ -90,7 +90,8 @@ export type PopularInput = z.infer<typeof popularSchema>
 
 export const genresSchema = z.object({
     type: typeEnum,
-    force: z.coerce.boolean().optional().default(false)
+    force: z.coerce.boolean().optional().default(false),
+    language: languageEnum
 })
 
 export type GenresInput = z.infer<typeof genresSchema>
