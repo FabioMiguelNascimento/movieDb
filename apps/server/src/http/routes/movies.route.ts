@@ -7,6 +7,6 @@ const router: Router = Router()
 
 const controller = new MoviesController()
 
-router.get('/', validateQuery(getTrandingSchema), controller.getAll)
+router.get('/tranding', validateQuery(getTrandingSchema), controller.getAll)
 
 export default router
