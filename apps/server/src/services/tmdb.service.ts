@@ -27,7 +27,7 @@ export default class TheMovieDBService {
             return this.callAPI("/authentication", 'GET')
         }
 
-        async getTrading(time: 'day' | 'week') {
+        async getTrending(time: 'day' | 'week') {
             if(!time) {
                 time = 'day'
             }

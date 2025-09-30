@@ -1,8 +1,8 @@
+import { SimilarInput, TopRatedSchemaInput } from "@repo/core/schemas/tmdb.schema";
 import { NextFunction, Request, Response } from "express";
 import TheMovieDBService from "../../services/tmdb.service";
 import { success } from "../../utils/api-response.helper";
 import MoviesRepository from "../repo/movie.repo";
-import { SimilarInput, TopRatedSchemaInput } from "@repo/core/schemas/tmdb.schema";
 
 export default class MoviesController {
     private moviesRepo: MoviesRepository;
@@ -13,11 +13,11 @@ export default class MoviesController {
         this.moviesService = new TheMovieDBService();
     }
 
-    getAll = async (req: Request, res: Response, next: NextFunction) => {
+    getTrending = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const { time } = req.validatedData
 
-            const result = await this.moviesService.getTrading(time)
+            const result = await this.moviesService.getTrending(time)
             return success(res, result, "Trending movies retrieved successfully")
         } catch (err) {
             next(err)
