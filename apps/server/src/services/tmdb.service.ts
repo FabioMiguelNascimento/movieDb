@@ -1,3 +1,4 @@
+import { TopRatedSchemaInput } from '@repo/core/schemas/tmdb.schema';
 import { tmdb } from '../utils/tmdb.axios';
 
 export default class TheMovieDBService {
@@ -32,5 +33,10 @@ export default class TheMovieDBService {
             }
 
             return this.callAPI(`/trending/all/${time}`)
+        }
+
+        async getTopRated(data: TopRatedSchemaInput) {
+            const { type, ...query } = data;
+            return this.callAPI(`/${type}/top_rated`, 'GET', undefined, query);
         }
 }
