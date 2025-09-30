@@ -1,6 +1,8 @@
 import z from 'zod'
 
-const timeEnum = z.enum(['day', 'week'])
+const page = z.coerce.number().int().min(1).optional().default(1)
+
+const timeEnum = z.enum(['day', 'week']).optional().default('day')
 
 const sortByEnum = z.enum([
     'popularity.asc',
@@ -15,9 +17,9 @@ const sortByEnum = z.enum([
     'title.desc'
 ])
 
-const languageEnum = z.enum(['pt-BR', 'en-US'])
+const languageEnum = z.enum(['pt-BR', 'en-US']).optional().default('pt-BR')
 
-const typeEnum = z.enum(['movie', 'tv'])
+const typeEnum = z.enum(['movie', 'tv']).optional().default('movie')
 
 export const getTrandingSchema = z.object({
     time: timeEnum.optional().default('day')
@@ -69,11 +71,19 @@ export const discoverSchema = z.object({
 
 export type DiscoverInput = z.infer<typeof discoverSchema>
 
-
 export const topRatedSchema = z.object({
-    page: z.coerce.number().int().min(1).optional().default(1),
-    language: languageEnum.optional().default('pt-BR'),
-    type: typeEnum.optional().default('movie')
+    page: page,
+    language: languageEnum,
+    type: typeEnum
 })
 
 export type TopRatedSchemaInput = z.infer<typeof topRatedSchema>
+
+export const similarSchema = z.object({
+    page: page,
+    type: typeEnum,
+    language: languageEnum,
+    similarId: z.string() // "120"
+})
+
+export type SimilarInput = z.infer<typeof similarSchema>

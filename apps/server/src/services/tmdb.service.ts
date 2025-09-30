@@ -1,4 +1,4 @@
-import { TopRatedSchemaInput } from '@repo/core/schemas/tmdb.schema';
+import { SimilarInput, TopRatedSchemaInput } from '@repo/core/schemas/tmdb.schema';
 import { tmdb } from '../utils/tmdb.axios';
 
 export default class TheMovieDBService {
@@ -38,5 +38,10 @@ export default class TheMovieDBService {
         async getTopRated(data: TopRatedSchemaInput) {
             const { type, ...query } = data;
             return this.callAPI(`/${type}/top_rated`, 'GET', undefined, query);
+        }
+
+        async getSimilar(data: SimilarInput) {
+            const { type, similarId, ...query} = data
+            return this.callAPI(`/${data.type}/${data.similarId}/similar`, 'GET', undefined, query)
         }
 }

@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import TheMovieDBService from "../../services/tmdb.service";
 import { success } from "../../utils/api-response.helper";
 import MoviesRepository from "../repo/movie.repo";
-import { TopRatedSchemaInput } from "@repo/core/schemas/tmdb.schema";
+import { SimilarInput, TopRatedSchemaInput } from "@repo/core/schemas/tmdb.schema";
 
 export default class MoviesController {
     private moviesRepo: MoviesRepository;
@@ -35,4 +35,15 @@ export default class MoviesController {
         }
     }
 
+
+    getSimilar = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const data: SimilarInput = req.validatedData
+
+            const result = await this.moviesService.getSimilar(data)
+            return success(res, result, "Similar movies/tv shows retrived sucessfully")
+        } catch (err) {
+            next(err)
+        }
+    }
 }
