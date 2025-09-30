@@ -79,6 +79,14 @@ export const topRatedSchema = z.object({
 
 export type TopRatedSchemaInput = z.infer<typeof topRatedSchema>
 
+export const popularSchema = z.object({
+    page: page,
+    language: languageEnum,
+    type: typeEnum
+})
+
+export type PopularInput = z.infer<typeof popularSchema>
+
 export const similarSchema = z.object({
     page: page,
     type: typeEnum,

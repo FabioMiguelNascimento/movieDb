@@ -1,4 +1,4 @@
-import { SimilarInput, TopRatedSchemaInput } from "@repo/core/schemas/tmdb.schema";
+import { PopularInput, SimilarInput, TopRatedSchemaInput } from "@repo/core/schemas/tmdb.schema";
 import { NextFunction, Request, Response } from "express";
 import TheMovieDBService from "../../services/tmdb.service";
 import { success } from "../../utils/api-response.helper";
@@ -30,6 +30,17 @@ export default class MoviesController {
 
             const result = await this.moviesService.getTopRated(data)
             return success(res, result, "Trending movies retrieved successfully")
+        } catch (err) {
+            next(err)
+        }
+    }
+
+    getPopular = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const data: PopularInput = req.validatedData
+
+            const result = await this.moviesService.getPopular(data)
+            return success(res, result, "Popular movies/TV retrieved successfully")
         } catch (err) {
             next(err)
         }
