@@ -1,16 +1,19 @@
-import { PopularInput, SimilarInput, TopRatedSchemaInput } from "@repo/core/schemas/tmdb.schema";
+import { GenresInput, PopularInput, SimilarInput, TopRatedSchemaInput } from "@repo/core/schemas/tmdb.schema";
 import { NextFunction, Request, Response } from "express";
 import TheMovieDBService from "../../services/tmdb.service";
+import makeGetGenres from "../../use-cases/movies/getGenres";
 import { success } from "../../utils/api-response.helper";
 import MoviesRepository from "../repo/movie.repo";
 
 export default class MoviesController {
     private moviesRepo: MoviesRepository;
-    private moviesService: TheMovieDBService
+    private moviesService: TheMovieDBService;
+    private getGenresUseCase: ReturnType<typeof makeGetGenres>;
 
     constructor() {
         this.moviesRepo = new MoviesRepository();
         this.moviesService = new TheMovieDBService();
+        this.getGenresUseCase = makeGetGenres(this.moviesRepo, this.moviesService);
     }
 
     getTrending = async (req: Request, res: Response, next: NextFunction) => {
@@ -41,6 +44,18 @@ export default class MoviesController {
 
             const result = await this.moviesService.getPopular(data)
             return success(res, result, "Popular movies/TV retrieved successfully")
+        } catch (err) {
+            next(err)
+        }
+    }
+
+    getGenres = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const data: GenresInput = req.validatedData
+
+            const result = await this.getGenresUseCase(data)
+            
+            return success(res, result, "Genres retrieved successfully")
         } catch (err) {
             next(err)
         }

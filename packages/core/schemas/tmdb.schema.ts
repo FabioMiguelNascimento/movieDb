@@ -87,6 +87,13 @@ export const popularSchema = z.object({
 
 export type PopularInput = z.infer<typeof popularSchema>
 
+export const genresSchema = z.object({
+    type: typeEnum,
+    force: z.coerce.boolean().optional().default(false)
+})
+
+export type GenresInput = z.infer<typeof genresSchema>
+
 export const similarSchema = z.object({
     page: page,
     type: typeEnum,

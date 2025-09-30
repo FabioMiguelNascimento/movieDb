@@ -1,4 +1,4 @@
-import { PopularInput, SimilarInput, TopRatedSchemaInput } from '@repo/core/schemas/tmdb.schema';
+import { GenresInput, PopularInput, SimilarInput, TopRatedSchemaInput } from '@repo/core/schemas/tmdb.schema';
 import { tmdb } from '../utils/tmdb.axios';
 
 export default class TheMovieDBService {
@@ -43,6 +43,10 @@ export default class TheMovieDBService {
         async getPopular(data: PopularInput) {
             const { type, ...query } = data;
             return this.callAPI(`/${type}/popular`, 'GET', undefined, query);
+        }
+
+        async getGenresFromAPI(type: 'movie' | 'tv') {
+            return this.callAPI(`/genre/${type}/list`);
         }
 
         async getSimilar(data: SimilarInput) {

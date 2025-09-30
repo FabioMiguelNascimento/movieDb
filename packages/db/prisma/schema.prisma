@@ -6,3 +6,17 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum Type {
+  movie
+  tv
+}
+
+
+model Genre {
+  id   Int    @id
+  name String
+  type Type
+  
+  @@unique([id, type])
+}
