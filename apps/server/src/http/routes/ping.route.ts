@@ -1,6 +1,6 @@
 import prisma from '@repo/db';
 import express, { NextFunction, Request, Response, Router } from 'express';
-import { success } from '../utils/api-response.helper';
+import { success } from '../../utils/api-response.helper';
 
 const router: Router = express.Router()
 
