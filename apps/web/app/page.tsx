@@ -1,6 +1,7 @@
 'use client';
 
 import { MoviesSection } from "@/components/movies-section";
+import { Navbar } from "@/components/navbar";
 import { Movie } from "@repo/core/types/api-response.types";
 
 export default function Home() {
@@ -369,16 +370,19 @@ export default function Home() {
         ]
 
   return (
-    <div className="min-h-screen bg-gray-950 py-8">
-      <div className="container mx-auto px-4">
-        <MoviesSection
-          title="Filmes em Destaque"
-          movies={mockMovies}
-          seeMoreHref="/movies/trending"
-          className="mb-12"
-        />
+    <div className="min-h-screen bg-gray-950">
+      <Navbar />
 
-      </div>
+      <main className="py-8">
+        <div className="container mx-auto px-4">
+          <MoviesSection
+            title="Filmes em Destaque"
+            movies={mockMovies}
+            seeMoreHref="/movies/trending"
+            className="mb-12"
+          />
+        </div>
+      </main>
     </div>
   );
 }
