@@ -28,7 +28,7 @@ export default class TheMovieDBService {
         }
 
         async getTrending(data: TrendingInput) {
-            return this.callAPI(`/trending/${data.type}/${data.time}`)
+            return this.callAPI(`/trending/${data.type}/${data.time}`, "GET", undefined, undefined)
         }
 
         async getTopRated(data: TopRatedSchemaInput) {

@@ -1,4 +1,4 @@
-import { DiscoverInput, GenresInput, PopularInput, SimilarInput, TopRatedSchemaInput } from "@repo/core/schemas/tmdb.schema";
+import { DiscoverInput, GenresInput, PopularInput, SimilarInput, TopRatedSchemaInput, TrendingInput } from "@repo/core/schemas/tmdb.schema";
 import { NextFunction, Request, Response } from "express";
 import TheMovieDBService from "../../services/tmdb.service";
 import makeGetGenres from "../../use-cases/movies/getGenres";
@@ -18,7 +18,7 @@ export default class MoviesController {
 
     getTrending = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const { data } = req.validatedData
+            const data: TrendingInput= req.validatedData
 
             const result = await this.moviesService.getTrending(data)
             return success(res, result, "Trending movies/series retrieved successfully")
