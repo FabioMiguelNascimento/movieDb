@@ -106,3 +106,11 @@ export const similarSchema = z.object({
 })
 
 export type SimilarInput = z.infer<typeof similarSchema>
+
+export const detailsSchema = z.object({
+    type: typeEnum,
+    id: z.coerce.number().int().positive(),
+    language: languageEnum
+})
+
+export type DetailsInput = z.infer<typeof detailsSchema>

@@ -2,6 +2,7 @@ import { Movie } from '@repo/core/types/api-response.types'
 import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures'
 import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import MovieCard from './movie-card'
 import {
     Carousel,
@@ -32,6 +33,7 @@ export function MoviesSection({
   type = 'movie',
   language = 'pt-BR',
 }: MoviesSectionProps) {
+  const router = useRouter()
   return (
     <section className={`w-full ${className}`}>
       <div className="flex items-center justify-between mb-6">
@@ -88,6 +90,7 @@ export function MoviesSection({
                   genres={movie.genre_ids}
                   type={type}
                   language={language}
+                  onClick={() => router.push(`/details/${type}/${movie.id}`)}
                 />
               </CarouselItem>
             ))}

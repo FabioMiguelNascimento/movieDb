@@ -14,13 +14,14 @@ interface MoviceCardProps {
     type?: 'movie' | 'tv'
     language?: string
     imageSize?: string
+    onClick?: () => void
 }
 
 const calcRating = (rating: number) => {
     return rating.toFixed(1);
 }
 
-export default function MovieCard({ imgUrl, title, description, rating, releaseDate: releaseData, genres, id, type = 'movie', language, imageSize = 'w342' }: MoviceCardProps) {
+export default function MovieCard({ imgUrl, title, description, rating, releaseDate: releaseData, genres, id, type = 'movie', language, imageSize = 'w342', onClick }: MoviceCardProps) {
     const { getGenreNames } = useGenres(type, language)
     const imageUrl = `https://image.tmdb.org/t/p/${imageSize}${imgUrl}`;
     
@@ -31,6 +32,7 @@ export default function MovieCard({ imgUrl, title, description, rating, releaseD
             key={id}
             data-id={id}
             className="relative w-full max-w-xs mx-auto bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+            onClick={onClick}
         >
             <div className="relative w-full aspect-[2/3]">
                 <Image

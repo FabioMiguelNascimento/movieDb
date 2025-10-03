@@ -84,3 +84,42 @@ export interface Genre {
   type: 'movie' | 'tv';
   language: string;
 }
+
+export interface MovieDetails {
+  id: number
+  title?: string
+  name?: string
+  overview: string
+  poster_path: string
+  backdrop_path: string
+  release_date?: string
+  first_air_date?: string
+  vote_average: number
+  runtime?: number
+  tagline?: string
+  homepage?: string
+  genres: Array<{ id: number; name: string }>
+  videos?: {
+    results: Array<{
+      id: string
+      key: string
+      name: string
+      site: string
+      type: string
+    }>
+  }
+  credits?: {
+    cast: Array<{
+      id: number
+      name: string
+      character: string
+      profile_path: string
+    }>
+    crew: Array<{
+      id: number
+      name: string
+      job: string
+      department: string
+    }>
+  }
+}

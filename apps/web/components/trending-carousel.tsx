@@ -1,6 +1,7 @@
 import { Movie } from '@repo/core/types/api-response.types'
 import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures'
 import { Ubuntu } from 'next/font/google'
+import { useRouter } from 'next/navigation'
 import MovieCard from './movie-card'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/carousel'
 
@@ -23,6 +24,7 @@ interface TrendingCarouselProps {
 }
 
 export function TrendingCarousel({ title, movies, loading, type }: TrendingCarouselProps) {
+  const router = useRouter()
   return (
     <section className="w-full mb-8">
       <h2 className="text-2xl font-bold text-white mb-6">{title}</h2>
@@ -68,6 +70,7 @@ export function TrendingCarousel({ title, movies, loading, type }: TrendingCarou
                     genres={movie.genre_ids}
                     type={type}
                     imageSize="w500"
+                    onClick={() => router.push(`/details/${type}/${movie.id}`)}
                   />
                 </div>
               </CarouselItem>
