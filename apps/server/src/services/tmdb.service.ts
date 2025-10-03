@@ -50,6 +50,10 @@ export default class TheMovieDBService {
             return this.callAPI(`/${data.type}/${data.similarId}/similar`, 'GET', undefined, query)
         }
 
+        async getDetails(type: 'movie' | 'tv', id: number, language: string = 'pt-BR') {
+            return this.callAPI(`/${type}/${id}`, 'GET', undefined, { language, append_to_response: 'videos,credits' });
+        }
+
         async discover(data: DiscoverInput){
             const { type, ...query } = data
             return this.callAPI(`/discover/${data.type}`, 'GET', undefined, query)
