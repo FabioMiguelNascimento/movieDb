@@ -13,15 +13,16 @@ interface MoviceCardProps {
     id: number
     type?: 'movie' | 'tv'
     language?: string
+    imageSize?: string
 }
 
 const calcRating = (rating: number) => {
-    return Math.round(rating * 10);
+    return rating.toFixed(1);
 }
 
-export default function MovieCard({ imgUrl, title, description, rating, releaseDate: releaseData, genres, id, type = 'movie', language }: MoviceCardProps) {
+export default function MovieCard({ imgUrl, title, description, rating, releaseDate: releaseData, genres, id, type = 'movie', language, imageSize = 'w342' }: MoviceCardProps) {
     const { getGenreNames } = useGenres(type, language)
-    const imageUrl = `https://image.tmdb.org/t/p/w342${imgUrl}`;
+    const imageUrl = `https://image.tmdb.org/t/p/${imageSize}${imgUrl}`;
     
     const genreNames = getGenreNames(genres)
 

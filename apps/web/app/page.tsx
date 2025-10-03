@@ -2,6 +2,7 @@
 
 import { MoviesSection } from "@/components/movies-section";
 import { Navbar } from "@/components/navbar";
+import TrendingSection from "@/components/trending-section";
 import { Movie } from "@repo/core/types/api-response.types";
 
 export default function Home() {
@@ -381,6 +382,7 @@ export default function Home() {
             seeMoreHref="/movies/trending"
             className="mb-12"
           />
+          <TrendingSection />
         </div>
       </main>
     </div>
