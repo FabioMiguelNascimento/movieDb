@@ -23,7 +23,8 @@ const typeEnum = z.enum(['movie', 'tv']).optional().default('movie')
 
 export const getTrendingSchema = z.object({
     time: timeEnum.optional().default('day'),
-    type: typeEnum
+    type: typeEnum,
+    language: languageEnum
 })
 
 export type TrendingInput = z.infer<typeof getTrendingSchema>
