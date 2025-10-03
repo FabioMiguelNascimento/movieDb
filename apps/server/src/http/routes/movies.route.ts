@@ -7,7 +7,7 @@ const router: Router = Router()
 
 const controller = new MoviesController()
 
-router.get('/trendind', validateQuery(getTrandingSchema), controller.getTrending)
+router.get('/trending', validateQuery(getTrandingSchema), controller.getTrending)
 router.get('/top-rated', validateQuery(topRatedSchema), controller.getTopRated)
 router.get('/popular', validateQuery(popularSchema), controller.getPopular)
 router.get('/genres', validateQuery(genresSchema), controller.getGenres)
