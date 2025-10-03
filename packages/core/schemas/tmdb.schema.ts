@@ -21,11 +21,12 @@ const languageEnum = z.enum(['pt-BR', 'en-US']).optional().default('pt-BR')
 
 const typeEnum = z.enum(['movie', 'tv']).optional().default('movie')
 
-export const getTrandingSchema = z.object({
-    time: timeEnum.optional().default('day')
+export const getTrendingSchema = z.object({
+    time: timeEnum.optional().default('day'),
+    type: typeEnum
 })
 
-export type getTrandingInput = z.infer<typeof getTrandingSchema>
+export type TrendingInput = z.infer<typeof getTrendingSchema>
 
 
 export const discoverSchema = z.object({

@@ -18,10 +18,10 @@ export default class MoviesController {
 
     getTrending = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const { time } = req.validatedData
+            const { data } = req.validatedData
 
-            const result = await this.moviesService.getTrending(time)
-            return success(res, result, "Trending movies retrieved successfully")
+            const result = await this.moviesService.getTrending(data)
+            return success(res, result, "Trending movies/series retrieved successfully")
         } catch (err) {
             next(err)
         }

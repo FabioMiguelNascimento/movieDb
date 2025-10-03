@@ -1,4 +1,4 @@
-import { DiscoverInput, PopularInput, SimilarInput, TopRatedSchemaInput } from '@repo/core/schemas/tmdb.schema';
+import { DiscoverInput, PopularInput, SimilarInput, TopRatedSchemaInput, TrendingInput } from '@repo/core/schemas/tmdb.schema';
 import { tmdb } from '../utils/tmdb.axios';
 
 export default class TheMovieDBService {
@@ -27,12 +27,8 @@ export default class TheMovieDBService {
             return this.callAPI("/authentication", 'GET')
         }
 
-        async getTrending(time: 'day' | 'week') {
-            if(!time) {
-                time = 'day'
-            }
-
-            return this.callAPI(`/trending/all/${time}`)
+        async getTrending(data: TrendingInput) {
+            return this.callAPI(`/trending/${data.type}/${data.time}`)
         }
 
         async getTopRated(data: TopRatedSchemaInput) {
