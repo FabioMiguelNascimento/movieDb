@@ -57,3 +57,30 @@ export interface OrganizationResponse {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface Movie {
+  id: number;
+  title: string;
+  name?: string;
+  poster_path: string;
+  overview: string;
+  release_date?: string;
+  first_air_date?: string;
+  genre_ids: number[];
+  vote_average: number;
+  adult?: boolean;
+  backdrop_path?: string;
+  video?: boolean;
+  vote_count?: number;
+  popularity?: number;
+  original_language?: string;
+  original_title?: string;
+  original_name?: string;
+}
+
+export interface Genre {
+  id: number;
+  name: string;
+  type: 'movie' | 'tv';
+  language: string;
+}

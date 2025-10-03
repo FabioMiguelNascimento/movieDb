@@ -1,4 +1,5 @@
 import { Badge } from '@/components/ui/badge'
+import { useGenres } from '@/hooks/useGenres'
 import { Star } from 'lucide-react'
 import Image from "next/image"
 
@@ -10,14 +11,19 @@ interface MoviceCardProps {
     releaseDate: string
     genres: number[]
     id: number
+    type?: 'movie' | 'tv'
+    language?: string
 }
 
 const calcRating = (rating: number) => {
     return Math.round(rating * 10);
 }
 
-export default function MovieCard({ imgUrl, title, description, rating, releaseDate: releaseData, genres, id }: MoviceCardProps) {
+export default function MovieCard({ imgUrl, title, description, rating, releaseDate: releaseData, genres, id, type = 'movie', language }: MoviceCardProps) {
+    const { getGenreNames } = useGenres(type, language)
     const imageUrl = `https://image.tmdb.org/t/p/w342${imgUrl}`;
+    
+    const genreNames = getGenreNames(genres)
 
     return (
         <div
@@ -51,10 +57,12 @@ export default function MovieCard({ imgUrl, title, description, rating, releaseD
                             </div>
                         </footer>
 
-                        {genres.length > 0 && (
-                            <div className="mt-2 flex gap-2">
-                                {genres.map((gen) =>
-                                    <Badge key={gen} variant="outline" className='border-accent text-accent'>{gen}</Badge>
+                        {genreNames.length > 0 && (
+                            <div className="mt-2 flex gap-2 flex-wrap">
+                                {genreNames.slice(0, 3).map((genreName) =>
+                                    <Badge key={genreName} variant="outline" className='border-accent text-accent text-xs'>
+                                        {genreName}
+                                    </Badge>
                                 )}
                             </div>
                         )}

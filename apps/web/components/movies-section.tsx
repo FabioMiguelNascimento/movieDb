@@ -1,3 +1,4 @@
+import { Movie } from '@repo/core/types/api-response.types'
 import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures'
 import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
@@ -9,18 +10,6 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from './ui/carousel'
-import { Skeleton } from './ui/skeleton'
-
-interface Movie {
-  id: number
-  title: string
-  poster_path: string
-  overview: string
-  release_date?: string
-  first_air_date?: string
-  genre_ids: number[]
-  vote_average: number
-}
 
 interface MoviesSectionProps {
   title: string
@@ -29,6 +18,8 @@ interface MoviesSectionProps {
   seeMore?: boolean
   seeMoreHref?: string
   className?: string
+  type?: 'movie' | 'tv'
+  language?: string
 }
 
 export function MoviesSection({
@@ -38,6 +29,8 @@ export function MoviesSection({
   seeMore = true,
   seeMoreHref = '#',
   className = '',
+  type = 'movie',
+  language = 'pt-BR',
 }: MoviesSectionProps) {
   return (
     <section className={`w-full ${className}`}>
@@ -59,9 +52,9 @@ export function MoviesSection({
         <div className="flex gap-4">
           {Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className="flex-shrink-0 w-64">
-              <Skeleton className="w-full aspect-[2/3] rounded-lg mb-3" />
-              <Skeleton className="h-4 w-3/4 mb-2" />
-              <Skeleton className="h-3 w-1/2" />
+              <div className="w-full aspect-[2/3] bg-gray-700 rounded-lg animate-pulse mb-3" />
+              <div className="h-4 w-3/4 bg-gray-700 rounded animate-pulse mb-2" />
+              <div className="h-3 w-1/2 bg-gray-700 rounded animate-pulse" />
             </div>
           ))}
         </div>
@@ -93,10 +86,14 @@ export function MoviesSection({
                   rating={movie.vote_average}
                   releaseDate={movie.release_date || movie.first_air_date || ''}
                   genres={movie.genre_ids}
+                  type={type}
+                  language={language}
                 />
               </CarouselItem>
             ))}
           </CarouselContent>
+          <CarouselPrevious className="hidden md:flex" />
+          <CarouselNext className="hidden md:flex" />
         </Carousel>
       )}
     </section>

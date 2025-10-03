@@ -1,9 +1,10 @@
 'use client';
 
 import { MoviesSection } from "@/components/movies-section";
+import { Movie } from "@repo/core/types/api-response.types";
 
 export default function Home() {
-  const mockMovies = [
+  const mockMovies: Movie[] = [
             {
                 "adult": false,
                 "backdrop_path": "/8rpDcsfLJypbO6vREc0547VKqEv.jpg",
