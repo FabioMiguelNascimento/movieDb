@@ -31,7 +31,7 @@ export default function MovieCard({ imgUrl, title, description, rating, releaseD
         <div
             key={id}
             data-id={id}
-            className="relative w-full max-w-xs mx-auto bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+            className="relative w-full max-w-xs mx-auto bg-primary rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group"
             onClick={onClick}
         >
             <div className="relative w-full aspect-[2/3]">

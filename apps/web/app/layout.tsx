@@ -1,3 +1,4 @@
+import { Navbar } from "@/components/navbar";
 import type { Metadata } from "next";
 import { Montserrat, Ubuntu } from 'next/font/google';
 import "./globals.css";
@@ -25,7 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>
+      <body className={`${montserrat.className} pt-16 min-h-screen bg-gray-950`}>
+      <Navbar />
+
         {children}
       </body>
     </html>

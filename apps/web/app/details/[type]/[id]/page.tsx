@@ -20,15 +20,15 @@ export default function DetailsPage() {
       <div className="min-h-screen bg-gray-950 text-white p-8">
         <div className="max-w-6xl mx-auto">
           <div className="animate-pulse">
-            <div className="h-8 bg-gray-700 rounded mb-8 w-1/3"></div>
+            <div className="h-8 bg-primary/20 rounded mb-8 w-1/3"></div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="md:col-span-1">
-                <div className="w-full aspect-[2/3] bg-gray-700 rounded-lg"></div>
+                <div className="w-full aspect-[2/3] bg-primary/20 rounded-lg"></div>
               </div>
               <div className="md:col-span-2 space-y-4">
-                <div className="h-4 bg-gray-700 rounded w-full"></div>
-                <div className="h-4 bg-gray-700 rounded w-3/4"></div>
-                <div className="h-4 bg-gray-700 rounded w-1/2"></div>
+                <div className="h-4 bg-primary/20 rounded w-full"></div>
+                <div className="h-4 bg-primary/20 rounded w-3/4"></div>
+                <div className="h-4 bg-primary/20 rounded w-1/2"></div>
               </div>
             </div>
           </div>
@@ -63,7 +63,7 @@ export default function DetailsPage() {
 
       <div className="relative z-10 min-h-screen text-white flex items-center">
         <div className="max-w-7xl mx-auto px-8 py-16 w-full">
-          <div className="max-w-2xl space-y-1">
+          <div className="max-w-4xl space-y-1">
             <div className="flex items-center gap-3 text-sm text-gray-300">
               {item.runtime && <span>{item.runtime} min</span>}
               {item.runtime && <span>•</span>}
@@ -83,7 +83,7 @@ export default function DetailsPage() {
               </div>
             </div>
 
-            <p className="text-base md:text-lg leading-relaxed text-gray-200 max-w-xl">
+            <p className="text-base md:text-lg leading-relaxed text-gray-200 max-w-3xl">
               {item.overview}
             </p>
 

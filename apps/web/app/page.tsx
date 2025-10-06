@@ -1,7 +1,6 @@
 'use client';
 
 import { MoviesSection } from "@/components/movies-section";
-import { Navbar } from "@/components/navbar";
 import TrendingSection from "@/components/trending-section";
 import { Movie } from "@repo/core/types/api-response.types";
 
@@ -371,9 +370,6 @@ export default function Home() {
         ]
 
   return (
-    <div className="min-h-screen bg-gray-950">
-      <Navbar />
-
       <main className="py-8">
         <div className="container mx-auto px-4">
           <MoviesSection
@@ -385,6 +381,5 @@ export default function Home() {
           <TrendingSection />
         </div>
       </main>
-    </div>
   );
 }
