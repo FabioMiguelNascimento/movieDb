@@ -39,25 +39,6 @@ export interface PaginatedResponse<T> extends SuccessResponse<T[]> {
   meta: PaginationMeta;
 }
 
-export interface AuthResponse {
-  user: {
-    id: string;
-    name: string;
-    email: string;
-    role: string;
-    organizationId?: string;
-  };
-  token: string;
-}
-
-export interface OrganizationResponse {
-  id: string;
-  name: string;
-  email: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
 export interface Movie {
   id: number;
   title: string;
