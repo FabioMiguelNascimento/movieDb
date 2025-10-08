@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ApiService } from './api/api.service';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MoviesModule } from './movies/movies.module';
@@ -6,6 +7,6 @@ import { MoviesModule } from './movies/movies.module';
 @Module({
   imports: [MoviesModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ApiService],
 })
 export class AppModule {}

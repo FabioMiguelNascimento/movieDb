@@ -1,7 +1,10 @@
 {
-  "extends": "@repo/typescript-config/base.json",
   "compilerOptions": {
     "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "resolvePackageJsonExports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
@@ -17,9 +20,6 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
-    "noFallthroughCasesInSwitch": false,
-    "paths": {
-      "@repo/*": ["../../packages/*"]
-    }
+    "noFallthroughCasesInSwitch": false
   }
 }
